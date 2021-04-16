@@ -1,42 +1,70 @@
 
-# Rapport
+# Report WebView ##
+## Rename your App. Hint: `res/values/strings.xml`
 
-**Skriv din rapport här!**
+## Enable Internet access for your App. Hint: `AndroidManifest.xml`
+Added the following line to the the AndroidManifest.xml 
 
-_Du kan ta bort all text som finns sedan tidigare_.
+    "<uses-permission android:name="android.permission.INTERNET" />"
 
-## Följande grundsyn gäller dugga-svar:
+## Create a WebView element in the layout file `content_main.xml` by replacing the existing `TextView`
+Followed the instruction se code bellow.
 
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
+    <WebView
+        android:id="@+id/my_webview"
 
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+## Give the WebView an ID. Hint: `android:id="@+id/my_webview"`
+Added the hinted code to content_main.xml se code above.
 
-```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
+## Create a private member variable called `myWebView` of the type `WebView` and instantiate it in `onCreate()`. Hint: `findViewById()`
+See code bellow.
+    
+    WebView myWebView;
+    ...
+    myWebView = findViewById(R.id.my_webview);
+
+## Locate the WebView element created in step 1 using the WebView ID
+See above.
+
+## Enable Javascript execution in your WebViewClient. Hint: `getSettings()` and `setJavaScriptEnabled()`
+Added the following line to onCreate. 
+
+    myWebView.getSettings().setJavaScriptEnabled(true);
+
+## Add a html page as an asset.
+Created an asset directory and added ayy.html to it as well as the TheFonz.jpg, see code of ayy.html bellow.
+
+    <h1>ayy&nbsp; html page</h1>
+    <p><img src="TheFonz.jpg" alt="The Fonz (Fonzie) Ayyy / Eyyy ; Happy Days ~M:M~" /></p>
+
+## Implement `showExternalWebPage()` and `showInternalWebPage()`. Hint: `loadUrl()`.
+Implemented the to functions in MainActivity.java, see code bellow.
+
+    public void showExternalWebPage(){
+            myWebView.loadUrl("https://youtu.be/mghhLqu31cQ");
     }
-}
-```
 
-Bilder läggs i samma mapp som markdown-filen.
+    public void showInternalWebPage(){
+            myWebView.loadUrl("file:///android_asset/ayy.html");
+    }
 
-![](android.png)
+## Call `showExternalWebPage()` and `showInternalWebPage()` when menu dropdown is clicked. Hint: `onOptionsItemSelected()`.
+Updated onOptionsItemSelected() in MainActivity.java, see code bellow.
+        if (id == R.id.action_external_web) {
+            //Log.d("==>","Will display external web page");
+            showExternalWebPage();
+            return true;
+        }
+        if (id == R.id.action_internal_web) {
+            //Log.d("==>","Will display internal web page");
+            showInternalWebPage();
+            return true;
 
-Läs gärna:
 
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
+## Internal webpage
+![](printscreens/Screenshot from 2021-04-16 16-53-05.png)
+
+## External webpage
+![](printscreens/Screenshot from 2021-04-16 16-53-05.png)
+
+
