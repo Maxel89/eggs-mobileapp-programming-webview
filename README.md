@@ -62,9 +62,9 @@ Updated onOptionsItemSelected() in MainActivity.java, see code bellow.
 
 
 ## Internal webpage
-![](Screenshot from 2021-04-16 16-53-05.png)
+![](Internal.png)
 
 ## External webpage
-![](Screenshot from 2021-04-16 16-53-05.png)
+![](External.png)
 
 
