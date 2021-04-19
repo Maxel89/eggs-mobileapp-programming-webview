@@ -40,7 +40,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.google.android.material:material:1.1.0'
 }
-
 task archive(type: Zip) {
     def projectDir = "${projectDir.parentFile}/"
     delete fileTree(projectDir) {
